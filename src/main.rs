@@ -279,7 +279,8 @@ fn cpu() -> f32 {
     
     let outStr = std::str::from_utf8(&top.stdout).unwrap(); 
     // println!("{}", outStr);
-    let RE = Regex::new(r"%Cpu\(s\).*, ([0-9\.]+)%* id.*").unwrap();
+    let RE = Regex::new(r"%Cpu\(s\).*,\s+([0-9\.]+)* id.*").unwrap();
+    // println!("{outStr}");
     let cap = RE.captures(outStr).unwrap();
     let value = 100.0 - cap[1].parse::<f32>().unwrap();
     
